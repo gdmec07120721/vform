@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>keyboard</title>
+</head>
+<body>
+    <input 
+        type="text" 
+        name="test_input" 
+        onkeydown="keydown()" 
+        onkeypress="keypress()"
+        onkeyup="keyup()
+    ">
+
+    <script type="text/javascript">
+        function keydown() {
+            //alert('keydown');
+            if (event.keyCode == 13) {
+                event.keyCode = 9
+            }
+        }
+
+        function keypress() {
+            //alert('keypress');
+        }
+
+        function keyup() {
+            console.log('keyup');
+        }
+    </script>
+</body>
+</html>

@@ -48,3 +48,22 @@ Vue.use(vueForm)
 
 ```
 
+## 扩展
+
+### `onkeyup`、`onkeydown`和`onkeypress`事件的了解
+
+onkeypress：用户按下任何字母数字键时触发该事件。系统按钮（例如，箭头键和功能键）无法得到识别。 
+
+onkeyup：用户放开按下的键盘键时触发该事件。 
+
+onkeydown：用户按下任何键盘键（包括系统按钮，如箭头键和功能键）都会触发该事件。
+
+其三者执行顺序分别是`onkeydown` > `onkeypress` > `onkeyup`。
+
+
+
+
+
+
+
+
