@@ -7,7 +7,7 @@
 ```js
 
 //引入
-import VForm from './directives/vform'
+import vueForm from './directives/vform'
 
 //使用插件
 Vue.use(vueForm)
