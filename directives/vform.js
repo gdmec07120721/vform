@@ -1,4 +1,4 @@
-/*created by xaobi <704123013@qq.com>*/
+/*created by xaobi*/
 
 const Form = {};
 
