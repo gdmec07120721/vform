@@ -1,14 +1,14 @@
-/*created by xaobi*/
+/*created by lixb <lixb@thinkive.com> on 2019-02-01*/
 
 const Form = {};
-
-let ele_inputs = [], //input输入框集合
-    ele_sub_btn = null; //提交按钮
 
 Form.install = (Vue, options = {}) => {
     //自定义指令实现
     Vue.directive('form', {
         bind: function (el, binding, vnode) {
+            let ele_inputs = [], //input输入框集合
+                ele_sub_btn = null; //提交按钮
+
             //判断是否有传入的参数
             if (binding.expression) {
                 ele_sub_btn = getAttrChildNode(el.childNodes, binding.value.sub_key);
@@ -17,38 +17,40 @@ Form.install = (Vue, options = {}) => {
             }
 
             ele_inputs = getChildNode(el.childNodes, 'INPUT');
+
+            addEventKeydown(ele_inputs, ele_sub_btn);
         }
     });
 };
 
-//监听键盘事件
-document.addEventListener('keydown', addFormKeyDown);
+function addEventKeydown(ele_inputs, ele_sub_btn) {
+    //监听键盘事件
+    document.addEventListener('keydown', () => {
+        // 兼容FF和IE和Opera
+        let theEvent = window.event || e;
+        let code = theEvent.keyCode || theEvent.which || theEvent.charCode;
 
-function addFormKeyDown() {
-    // 兼容FF和IE和Opera
-    let theEvent = window.event || e;
-    let code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        //enter按钮
+        if (code == 13) {
+            //获取当前活动的元素
+            let active_ele = document.activeElement;
 
-    //enter按钮
-    if (code == 13) {
-        //获取当前活动的元素
-        let active_ele = document.activeElement;
-
-        for (let i = 0; i < ele_inputs.length; i++) {
-            //判断当前活动的元素是否是input输入框集合里的元素
-            if (ele_inputs[i] == active_ele) {
-                //并且获取当前活动的元素在集合里的下标，判断是否非最后一个输入框
-                if (i < (ele_inputs.length - 1)) {
-                    //下一个input聚焦
-                    ele_inputs[i + 1].focus();
-                    break;
-                } else if (i == (ele_inputs.length - 1) && ele_sub_btn) {
-                    //提交按钮聚焦
-                    ele_sub_btn.focus();
+            for (let i = 0; i < ele_inputs.length; i++) {
+                //判断当前活动的元素是否是input输入框集合里的元素
+                if (ele_inputs[i] == active_ele) {
+                    //并且获取当前活动的元素在集合里的下标，判断是否非最后一个输入框
+                    if (i < (ele_inputs.length - 1)) {
+                        //下一个input聚焦
+                        ele_inputs[i + 1].focus();
+                        break;
+                    } else if (i == (ele_inputs.length - 1) && ele_sub_btn) {
+                        //提交按钮聚焦
+                        ele_sub_btn.focus();
+                    }
                 }
             }
         }
-    }
+    });
 }
 
 /*
