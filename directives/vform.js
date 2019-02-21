@@ -92,7 +92,6 @@ function getAttrChildNode(child_nodes, attr_key) {
     child_nodes.forEach(ele => {
         //判断子元素是不是非文本
         if (ele.nodeName.indexOf('#') <= -1) {
-            console.log('ele', ele, ele.nodeName)
             //获取指定属性名称的值
             let new_attr_name = ele.getAttribute(attr_key);
 
